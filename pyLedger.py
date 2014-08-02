@@ -13,9 +13,11 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 		super(PyLedger, self).__init__()
 		self.setupUi(self)
 
+		self.entriesTable.blockSignals(True)
 		self.entriesTable.horizontalHeader().setResizeMode(QHeaderView.ResizeToContents)
 		self.fill_table(ledger)
 		self.updateStatusBar(ledger)
+		self.entriesTable.blockSignals(False)
 
 	def fill_table(self, ledger):
 		row=0
@@ -50,6 +52,10 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 		moneyItem = self.entriesTable.item(row, 2)
 		self.entriesTable.setCurrentItem(moneyItem)
 		self.entriesTable.editItem(moneyItem)
+
+
+	def on_entriesTable_itemChanged(self, item):
+		print "Item changed", item
 
 	def on_showSummaryButton_clicked(self, b):
 		print "Save changes"
