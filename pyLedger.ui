@@ -52,6 +52,9 @@
               <attribute name="horizontalHeaderVisible">
                <bool>true</bool>
               </attribute>
+              <attribute name="horizontalHeaderStretchLastSection">
+               <bool>true</bool>
+              </attribute>
               <column/>
               <column/>
               <column/>
