@@ -55,9 +55,16 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="connectButton">
+         <widget class="QPushButton" name="removeEntryButton">
           <property name="text">
-           <string>Calculate totals</string>
+           <string>Remove entry</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="showSummaryButton">
+          <property name="text">
+           <string>Show summary</string>
           </property>
          </widget>
         </item>
