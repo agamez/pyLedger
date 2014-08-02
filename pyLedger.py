@@ -12,8 +12,12 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 	def __init__(self, ledger):
 		super(PyLedger, self).__init__()
 		self.setupUi(self)
-		self.entriesTable.horizontalHeader().setResizeMode(QHeaderView.ResizeToContents)
 
+		self.entriesTable.horizontalHeader().setResizeMode(QHeaderView.ResizeToContents)
+		self.fill_table(ledger)
+		self.updateStatusBar(ledger)
+
+	def fill_table(self, ledger):
 		row=0
 		for entry in ledger.entries:
 			entryItems = map(QTableWidgetItem, entry)
@@ -25,6 +29,8 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 				self.entriesTable.setItem(row,column,item)
 				column+=1
 			row+=1
+
+	def updateStatusBar(self, ledger):
 		totals = ledger.calculate_totals()
 		max_owes = max([t[2] for t in totals[1:]])
 		next_payer = [t[0] for t in totals[1:] if t[2]==max_owes][0]
