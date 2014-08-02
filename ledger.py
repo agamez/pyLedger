@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import os
+from shutil import copyfile
 
 class Ledger():
 	def split_ledger_contents(self):
@@ -27,6 +28,16 @@ class Ledger():
 			total.append((persona, total_persona, diff_persona))
 		return total
 
+	def save(self):
+		copyfile(self.file, self.file+"~")
+		with open(self.file, "w") as fd:
+			fd.write(self.file_contents[0])
+			fd.write(self.file_contents[1])
+			print self.entries
+			for entry in self.entries:
+				fd.write(' '.join(entry)+"\n")
+
+
 	def __init__(self, file="~/.pyLedger/default.ldgr"):
 		self.file=os.path.expanduser(file)
 		try:
@@ -42,3 +53,4 @@ class Ledger():
 if __name__ == '__main__':
 	test_ledger = Ledger()
 	print test_ledger.calculate_totals()
+	print test_ledger.save()
