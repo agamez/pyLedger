@@ -47,6 +47,7 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 		self.entriesTable.setItem(row, 2, moneyItem)
 
 		self.entriesTable.setCurrentItem(moneyItem)
+		self.entriesTable.editItem(moneyItem)
 
 	def on_showSummaryButton_clicked(self, b):
 		print "Save changes"
