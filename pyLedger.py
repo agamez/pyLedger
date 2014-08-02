@@ -13,7 +13,6 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 		super(PyLedger, self).__init__()
 		self.setupUi(self)
 
-		print ledger.entries
 		row=0
 		for entry in ledger.entries:
 			entryItems = map(QTableWidgetItem, entry)
@@ -22,7 +21,6 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 			for item in entryItems:
 				self.entriesTable.setItem(row,column,item)
 				column+=1
-			print entry, "OK"
 			row+=1
 
 
