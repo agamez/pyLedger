@@ -18,6 +18,15 @@ class Ledger():
 			self.entries_by_payer[persona].append(entry)
 			self.entries.append(entry)
 
+	def calculate_totals(self):
+		total = list()
+		total.append(sum([float(x[2]) for x in self.entries]))
+		for persona in self.entries_by_payer:
+			total_persona = sum([float(x[2]) for x in self.entries_by_payer[persona]])
+			diff_persona = total[0]/len(self.entries_by_payer) - total_persona
+			total.append((persona, total_persona, diff_persona))
+		return total
+
 	def __init__(self, file="~/.pyLedger/default.ldgr"):
 		self.file=os.path.expanduser(file)
 		try:
@@ -32,4 +41,4 @@ class Ledger():
 
 if __name__ == '__main__':
 	test_ledger = Ledger()
-	print test_ledger.entries
+	print test_ledger.calculate_totals()

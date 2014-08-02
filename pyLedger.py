@@ -25,6 +25,9 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 				self.entriesTable.setItem(row,column,item)
 				column+=1
 			row+=1
+		totals = ledger.calculate_totals()
+		print self.statusBar().showMessage(str(totals))
+		print totals
 
 
 if __name__ == "__main__":
