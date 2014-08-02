@@ -37,6 +37,10 @@ class Ledger():
 		for entry in self.entries:
 			fd.write(' '.join(entry)+"\n")
 		fd.close()
+		print "Saved"
+
+	def verify_entry(self, entry):
+		return True
 
 
 	def __init__(self, file="~/.pyLedger/default.ldgr"):

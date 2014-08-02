@@ -11,17 +11,18 @@ from ledger import Ledger
 class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 	def __init__(self, ledger):
 		super(PyLedger, self).__init__()
+		self.ledger=ledger
 		self.setupUi(self)
 
 		self.entriesTable.blockSignals(True)
 		self.entriesTable.horizontalHeader().setResizeMode(QHeaderView.ResizeToContents)
-		self.fill_table(ledger)
-		self.updateStatusBar(ledger)
+		self.fill_table()
+		self.updateStatusBar()
 		self.entriesTable.blockSignals(False)
 
-	def fill_table(self, ledger):
+	def fill_table(self):
 		row=0
-		for entry in ledger.entries:
+		for entry in self.ledger.entries:
 			self.entriesTable.setRowCount(row+1)
 			self.setEntry(entry, row)
 			row+=1
@@ -35,13 +36,15 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 			self.entriesTable.setItem(row,column,item)
 			column+=1
 
-	def updateStatusBar(self, ledger):
-		totals = ledger.calculate_totals()
+	def updateStatusBar(self):
+		totals = self.ledger.calculate_totals()
 		max_owes = max([t[2] for t in totals[1:]])
 		next_payer = [t[0] for t in totals[1:] if t[2]==max_owes][0]
 		self.statusBar().showMessage("Total spent: %.02f. %s owes: %.02f. %s owes: %.02f. %s should pay next." % (totals[0], totals[1][0], totals[1][2], totals[2][0], totals[2][2], next_payer))
 
 	def on_newEntryButton_clicked(self, b):
+		self.entriesTable.blockSignals(True)
+
 		row=self.entriesTable.rowCount()
 		self.entriesTable.setRowCount(row+1)
 
@@ -53,9 +56,18 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 		self.entriesTable.setCurrentItem(moneyItem)
 		self.entriesTable.editItem(moneyItem)
 
+		self.entriesTable.blockSignals(False)
+
 
 	def on_entriesTable_itemChanged(self, item):
-		print "Item changed", item
+		entry = list()
+		for x in range(0,self.entriesTable.columnCount()):
+			entry.append(self.entriesTable.item(item.row(), x).text())
+
+		if self.ledger.verify_entry(entry):
+			print "Saving"
+			self.ledger.save()
+
 
 	def on_showSummaryButton_clicked(self, b):
 		print "Save changes"
