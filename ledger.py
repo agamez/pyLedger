@@ -30,12 +30,13 @@ class Ledger():
 
 	def save(self):
 		copyfile(self.file, self.file+"~")
-		with open(self.file, "w") as fd:
-			fd.write(self.file_contents[0])
-			fd.write(self.file_contents[1])
-			print self.entries
-			for entry in self.entries:
-				fd.write(' '.join(entry)+"\n")
+		fd = open(self.file, "w")
+		fd.write(self.file_contents[0])
+		fd.write(self.file_contents[1])
+		print self.entries
+		for entry in self.entries:
+			fd.write(' '.join(entry)+"\n")
+		fd.close()
 
 
 	def __init__(self, file="~/.pyLedger/default.ldgr"):
