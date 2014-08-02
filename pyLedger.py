@@ -35,6 +35,11 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 
 		self.entriesTable.setItem(row, 0, QTableWidgetItem(QDate.currentDate().toString(Qt.SystemLocaleShortDate)))
 		self.entriesTable.setItem(row, 1, QTableWidgetItem(QTime.currentTime().toString()))
+		moneyItem = QTableWidgetItem("0.00")
+		moneyItem.setTextAlignment(Qt.AlignRight | Qt.AlignVCenter)
+		self.entriesTable.setItem(row, 2, moneyItem)
+
+		self.entriesTable.setCurrentItem(moneyItem)
 
 
 if __name__ == "__main__":
