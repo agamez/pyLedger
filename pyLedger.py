@@ -29,6 +29,13 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 		print self.statusBar().showMessage(str(totals))
 		print totals
 
+	def on_newEntryButton_clicked(self, b):
+		row=self.entriesTable.rowCount()
+		self.entriesTable.setRowCount(row+1)
+
+		self.entriesTable.setItem(row, 0, QTableWidgetItem(QDate.currentDate().toString(Qt.SystemLocaleShortDate)))
+		self.entriesTable.setItem(row, 1, QTableWidgetItem(QTime.currentTime().toString()))
+
 
 if __name__ == "__main__":
 	app = QApplication(sys.argv)
