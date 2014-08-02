@@ -26,7 +26,7 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 				column+=1
 			row+=1
 		totals = ledger.calculate_totals()
-		print self.statusBar().showMessage(str(totals))
+		print self.statusBar().showMessage("Total spent: " + "%.02f" % totals[0])
 		print totals
 
 	def on_newEntryButton_clicked(self, b):
