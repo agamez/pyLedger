@@ -20,7 +20,7 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 	def fill_table(self, ledger):
 		row=0
 		for entry in ledger.entries:
-			self.entriesTable.setRowCount(self.entriesTable.rowCount()+1)
+			self.entriesTable.setRowCount(row+1)
 			self.setEntry(entry, row)
 			row+=1
 
