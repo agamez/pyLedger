@@ -12,6 +12,7 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 	def __init__(self, ledger):
 		super(PyLedger, self).__init__()
 		self.setupUi(self)
+		self.entriesTable.horizontalHeader().setResizeMode(QHeaderView.ResizeToContents)
 
 		row=0
 		for entry in ledger.entries:
