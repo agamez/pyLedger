@@ -19,23 +19,6 @@
     <item row="0" column="0">
      <layout class="QVBoxLayout" name="buttonsLayout">
       <item>
-       <widget class="QScrollArea" name="scrollArea">
-        <property name="widgetResizable">
-         <bool>true</bool>
-        </property>
-        <widget class="QWidget" name="scrollAreaWidgetContents">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>0</y>
-           <width>760</width>
-           <height>374</height>
-          </rect>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_2">
-          <item row="0" column="0">
-           <layout class="QVBoxLayout" name="entriesLayout">
-            <item>
              <widget class="QTableWidget" name="entriesTable">
               <property name="alternatingRowColors">
                <bool>true</bool>
@@ -61,12 +44,6 @@
               <column/>
               <column/>
              </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
-       </widget>
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
