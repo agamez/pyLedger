@@ -19,6 +19,8 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 			self.entriesTable.setRowCount(self.entriesTable.rowCount()+1)
 			column=0
 			for item in entryItems:
+				if column==2:
+					item.setTextAlignment(Qt.AlignRight | Qt.AlignVCenter)
 				self.entriesTable.setItem(row,column,item)
 				column+=1
 			row+=1

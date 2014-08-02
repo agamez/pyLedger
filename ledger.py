@@ -10,7 +10,8 @@ class Ledger():
 			entry = entry.split()
 			entry[4] = " ".join(entry[4:])
 			entry = entry[:5]
-			persona = entry[3].upper() 
+			entry[2] = "%.02f" % float(entry[2])
+			persona = entry[3].upper()
 
 			if persona not in self.entries_by_payer:
 				self.entries_by_payer[persona] = list()
