@@ -19,31 +19,31 @@
     <item row="0" column="0">
      <layout class="QVBoxLayout" name="buttonsLayout">
       <item>
-             <widget class="QTableWidget" name="entriesTable">
-              <property name="alternatingRowColors">
-               <bool>true</bool>
-              </property>
-              <property name="showGrid">
-               <bool>true</bool>
-              </property>
-              <property name="rowCount">
-               <number>0</number>
-              </property>
-              <property name="columnCount">
-               <number>5</number>
-              </property>
-              <attribute name="horizontalHeaderVisible">
-               <bool>true</bool>
-              </attribute>
-              <attribute name="horizontalHeaderStretchLastSection">
-               <bool>true</bool>
-              </attribute>
-              <column/>
-              <column/>
-              <column/>
-              <column/>
-              <column/>
-             </widget>
+       <widget class="QTableWidget" name="entriesTable">
+        <property name="alternatingRowColors">
+         <bool>true</bool>
+        </property>
+        <property name="showGrid">
+         <bool>true</bool>
+        </property>
+        <property name="rowCount">
+         <number>0</number>
+        </property>
+        <property name="columnCount">
+         <number>5</number>
+        </property>
+        <attribute name="horizontalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>true</bool>
+        </attribute>
+        <column/>
+        <column/>
+        <column/>
+        <column/>
+        <column/>
+       </widget>
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
