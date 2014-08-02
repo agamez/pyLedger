@@ -20,15 +20,18 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 	def fill_table(self, ledger):
 		row=0
 		for entry in ledger.entries:
-			entryItems = map(QTableWidgetItem, entry)
 			self.entriesTable.setRowCount(self.entriesTable.rowCount()+1)
-			column=0
-			for item in entryItems:
-				if column==2:
-					item.setTextAlignment(Qt.AlignRight | Qt.AlignVCenter)
-				self.entriesTable.setItem(row,column,item)
-				column+=1
+			self.setEntry(entry, row)
 			row+=1
+
+	def setEntry(self, entry, row):
+		entryItems = map(QTableWidgetItem, entry)
+		column=0
+		for item in entryItems:
+			if column==2:
+				item.setTextAlignment(Qt.AlignRight | Qt.AlignVCenter)
+			self.entriesTable.setItem(row,column,item)
+			column+=1
 
 	def updateStatusBar(self, ledger):
 		totals = ledger.calculate_totals()
