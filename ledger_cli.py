@@ -5,7 +5,7 @@ def persona_total(persona):
 	return sum([float(x[2]) for x in persona]) 
 
 expenses = dict()
-ledger_file = open(os.path.expanduser("~/.pyLedger/default.ldgr"), 'r').readlines()[1:]
+ledger_file = open(os.path.expanduser("~/.pyLedger/default.ldgr"), 'r').readlines()[2:]
 
 for entry in ledger_file:
 	entry = entry.split()
