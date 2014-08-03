@@ -41,9 +41,12 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 
 	def updateStatusBar(self):
 		totals = self.ledger.calculate_totals()
-		max_owes = max([t[2] for t in totals[1:]])
-		next_payer = [t[0] for t in totals[1:] if t[2]==max_owes][0]
-		self.statusBar().showMessage("Total spent: %.02f. %s owes: %.02f. %s owes: %.02f. %s should pay next." % (totals[0], totals[1][0], totals[1][2], totals[2][0], totals[2][2], next_payer))
+		try:
+			max_owes = max([t[2] for t in totals[1:]])
+			next_payer = [t[0] for t in totals[1:] if t[2]==max_owes][0]
+			self.statusBar().showMessage("Total spent: %.02f. %s owes: %.02f. %s owes: %.02f. %s should pay next." % (totals[0], totals[1][0], totals[1][2], totals[2][0], totals[2][2], next_payer))
+		except:
+			self.statusBar().showMessage("Empty ledger")
 
 	def on_removeEntryButton_clicked(self, b):
 		row=self.entriesTable.currentRow()
