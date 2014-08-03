@@ -66,6 +66,7 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 
 		if self.ledger.verify_entry(entry):
 			print "Saving"
+			self.ledger.entries.append(entry)
 			self.ledger.save()
 
 
