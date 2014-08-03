@@ -86,7 +86,13 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 
 
 	def on_showSummaryButton_clicked(self, b):
-		print "Save changes"
+		totals = self.ledger.calculate_totals()
+
+		msg = "Ledger statistics\n\n"
+		msg = "Total payed: %.02f\n\n" % totals[0]
+		for payer in totals[1:]:
+			msg += "%s payed\t%.02f\t%s\t%.02f\n" % (payer[0], payer[1], "owes" if payer[2] > 0 else "is owned", payer[2])
+		QMessageBox.about(self, "Ledger summary", msg)
 
 
 if __name__ == "__main__":
