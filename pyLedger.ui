@@ -88,26 +88,26 @@
      <string>Manage</string>
     </property>
     <addaction name="actionNew"/>
-    <addaction name="actionEdit"/>
-    <addaction name="actionRemove"/>
-    <addaction name="actionLoad_ledger"/>
+    <addaction name="actionOpen"/>
+    <addaction name="actionConfigure"/>
+    <addaction name="actionSetDefault"/>
    </widget>
    <addaction name="menuNew"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionNew">
    <property name="text">
-    <string>New</string>
+    <string>New ledger</string>
    </property>
   </action>
-  <action name="actionEdit">
+  <action name="actionOpen">
    <property name="text">
-    <string>Edit</string>
+    <string>Open ledger</string>
    </property>
   </action>
   <action name="actionRemove">
    <property name="text">
-    <string>Remove</string>
+    <string>emove</string>
    </property>
   </action>
   <action name="actionConnect">
@@ -115,9 +115,14 @@
     <string>Connect</string>
    </property>
   </action>
-  <action name="actionLoad_ledger">
+  <action name="actionConfigure">
    <property name="text">
-    <string>Load ledger</string>
+    <string>Configure ledger</string>
+   </property>
+  </action>
+  <action name="actionSetDefault">
+   <property name="text">
+    <string>Set as default ledger</string>
    </property>
   </action>
  </widget>
