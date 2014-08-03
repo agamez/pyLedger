@@ -9,7 +9,10 @@ class Ledger():
 		self.entries = list()
 		for entry in self.file_contents[2:]:
 			entry = entry.split()
-			entry[4] = " ".join(entry[4:])
+			try:
+				entry[4] = " ".join(entry[4:])
+			except:
+				entry.append("No description")
 			entry = entry[:5]
 			entry[2] = "%.02f" % float(entry[2])
 			persona = entry[3].upper()
