@@ -60,6 +60,7 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 		self.entriesTable.editItem(moneyItem)
 
 		self.entriesTable.blockSignals(False)
+		self.ledger.entries.append()
 
 
 	def on_entriesTable_itemChanged(self, item):
@@ -69,8 +70,12 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 
 		if self.ledger.verify_entry(entry):
 			print "Saving"
-			self.ledger.entries.append(entry)
+			try:
+				self.ledger.entries[item.row()] = map(str, entry)
+			except:
+				self.ledger.entries.append(map(str, entry))
 			self.ledger.save()
+			self.reload()
 
 
 	def on_showSummaryButton_clicked(self, b):
