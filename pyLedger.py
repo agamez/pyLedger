@@ -46,6 +46,12 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 		next_payer = [t[0] for t in totals[1:] if t[2]==max_owes][0]
 		self.statusBar().showMessage("Total spent: %.02f. %s owes: %.02f. %s owes: %.02f. %s should pay next." % (totals[0], totals[1][0], totals[1][2], totals[2][0], totals[2][2], next_payer))
 
+	def on_removeEntryButton_clicked(self, b):
+		row=self.entriesTable.currentRow()
+		self.ledger.entries.pop(row)
+		self.ledger.save()
+		self.reload()
+
 	def on_newEntryButton_clicked(self, b):
 		self.entriesTable.blockSignals(True)
 
