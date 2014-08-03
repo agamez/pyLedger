@@ -4,7 +4,6 @@ import sys
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 import pyLedger_ui
-import editEntry_ui
 from ledger import Ledger
 
 
