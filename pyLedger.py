@@ -69,7 +69,6 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 		self.entriesTable.editItem(moneyItem)
 
 		self.entriesTable.blockSignals(False)
-		self.ledger.entries.append()
 
 
 	def on_entriesTable_itemChanged(self, item):
