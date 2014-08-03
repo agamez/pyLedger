@@ -13,7 +13,10 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 		super(PyLedger, self).__init__()
 		self.ledger=ledger
 		self.setupUi(self)
+		self.reload()
 
+	def reload(self):
+		self.ledger.load()
 		self.entriesTable.blockSignals(True)
 		self.entriesTable.horizontalHeader().setResizeMode(QHeaderView.ResizeToContents)
 		self.fill_table()

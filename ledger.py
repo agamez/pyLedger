@@ -48,6 +48,9 @@ class Ledger():
 
 	def __init__(self, file="~/.pyLedger/default.ldgr"):
 		self.file=os.path.expanduser(file)
+		self.load()
+
+	def load(self):
 		try:
 			fd = open(self.file, "rw")
 			self.file_contents = fd.readlines()
