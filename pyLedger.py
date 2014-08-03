@@ -22,6 +22,7 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 		self.fill_table()
 		self.updateStatusBar()
 		self.entriesTable.blockSignals(False)
+		self.entriesTable.setCurrentCell(self.entriesTable.rowCount()-1, 0)
 
 	def fill_table(self):
 		row=0
