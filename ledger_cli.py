@@ -17,15 +17,18 @@ def calculate_expenses_person(ledger_contents):
 		expenses[persona].append(entry)
 	return expenses
 
-if __name__ == '__main__':
-	ledger_contents = open(os.path.expanduser("~/.pyLedger/default.ldgr"), 'r').readlines()[2:]
-
-	expenses = calculate_expenses_person(ledger_contents)
+def print_expenses():
 	for key in expenses:
 		print key,":",
 		expenses[key] = persona_total(expenses[key]) 
 		print expenses[key] 
 	print
+
+if __name__ == '__main__':
+	ledger_contents = open(os.path.expanduser("~/.pyLedger/default.ldgr"), 'r').readlines()[2:]
+
+	expenses = calculate_expenses_person(ledger_contents)
+	print_expenses()
 
 	total = sum([expenses[key] for key in expenses]) 
 	print "TOTAL:", total
