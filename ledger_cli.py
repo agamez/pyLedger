@@ -29,9 +29,11 @@ if __name__ == '__main__':
 	print sys.argv
 	ledger_file = "~/.pyLedger/default.ldgr" if len(sys.argv)<2 else sys.argv[1]
 
-	ledger_contents = open(os.path.expanduser(ledger_file), 'r').readlines()[2:]
+	ledger_contents = open(os.path.expanduser(ledger_file), 'r').readlines()
 
-	expenses = calculate_expenses_person(ledger_contents)
+	expenses = calculate_expenses_person(ledger_contents[2:])
+
+	print ledger_contents[0]
 	print_expenses()
 
 	total = sum([expenses[key] for key in expenses]) 
