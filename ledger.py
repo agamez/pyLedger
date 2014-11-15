@@ -4,10 +4,9 @@ from shutil import copyfile
 
 class Ledger():
 	def split_ledger_contents(self):
-		self.people = self.file_contents[1].upper().split()
 		self.entries_by_payer = dict()
 		self.entries = list()
-		for entry in self.file_contents[2:]:
+		for entry in self.file_contents[1:]:
 			entry = entry.split()
 			try:
 				entry[4] = " ".join(entry[4:])
