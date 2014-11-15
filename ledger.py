@@ -14,20 +14,20 @@ class Ledger():
 				entry.append("No description")
 			entry = entry[:5]
 			entry[2] = "%.02f" % float(entry[2])
-			persona = entry[3].upper()
+			payer = entry[3].upper()
 
-			if persona not in self.entries_by_payer:
-				self.entries_by_payer[persona] = list()
-			self.entries_by_payer[persona].append(entry)
+			if payer not in self.entries_by_payer:
+				self.entries_by_payer[payer] = list()
+			self.entries_by_payer[payer].append(entry)
 			self.entries.append(entry)
 
 	def calculate_totals(self):
 		total = list()
 		total.append(sum([float(x[2]) for x in self.entries]))
-		for persona in self.entries_by_payer:
-			total_persona = sum([float(x[2]) for x in self.entries_by_payer[persona]])
-			diff_persona = total[0]/len(self.entries_by_payer) - total_persona
-			total.append((persona, total_persona, diff_persona))
+		for payer in self.entries_by_payer:
+			total_payer = sum([float(x[2]) for x in self.entries_by_payer[payer]])
+			diff_payer = total[0]/len(self.entries_by_payer) - total_payer
+			total.append((payer, total_payer, diff_payer))
 		return total
 
 	def save(self):
