@@ -4,6 +4,7 @@ from shutil import copyfile
 
 class Ledger():
 	def split_ledger_contents(self):
+		self.title = self.file_contents[0]
 		self.entries_by_payer = dict()
 		self.entries = list()
 		for entry in self.file_contents[1:]:
@@ -61,6 +62,25 @@ class Ledger():
 		self.split_ledger_contents()
 
 if __name__ == '__main__':
-	test_ledger = Ledger()
-	print test_ledger.calculate_totals()
-	print test_ledger.save()
+	import sys
+
+	if len(sys.argv)==2:
+		ledger = Ledger(sys.argv[1])
+	else:
+		ledger = Ledger()
+
+	totals = ledger.calculate_totals()
+
+	total = totals[0]
+	expenses = totals[1:]
+
+	print expenses
+
+	print "TOTAL:", total
+	for entry in expenses:
+		person, payed, owes = entry
+		if owes>0:
+			print "%s paid:\t%.02f and still owes:\t%0.2f" % (person, payed, owes)
+		else:
+			print "%s paid:\t%.02f and is owed:\t%0.2f" % (person, payed, abs(owes))
+		
