@@ -74,7 +74,7 @@ if __name__ == '__main__':
 	total = totals[0]
 	expenses = totals[1:]
 
-	print expenses
+	print ledger.title
 
 	print "TOTAL:", total
 	for entry in expenses:
