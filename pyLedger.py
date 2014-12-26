@@ -96,6 +96,13 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 			msg += "%s payed\t%.02f\t%s\t%.02f\n" % (payer[0], payer[1], "owes" if payer[2] > 0 else "is owned", payer[2])
 		QMessageBox.about(self, "Ledger summary", msg)
 
+	def on_actionOpen_triggered(self, b):
+		new_ledger = QFileDialog.getOpenFileName(self, 'Open ledger', '/', 'Ledger files (*.ldgr)')
+		if new_ledger:
+			self.ledger.save()
+			self.ledger = Ledger(str(new_ledger))
+			self.reload()
+
 
 if __name__ == "__main__":
 	app = QApplication(sys.argv)
