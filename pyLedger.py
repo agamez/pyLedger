@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import sys
+import os
 
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
@@ -102,6 +103,12 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 			self.ledger.save()
 			self.ledger = Ledger(str(new_ledger))
 			self.reload()
+
+	def on_actionSetDefault_triggered(self, b):
+		default_ledger = os.path.expanduser('~/.default.ldgr')
+		if not os.path.exists(default_ledger) or os.path.islink(default_ledger):
+			os.remove(default_ledger)
+			os.symlink(self.ledger.file, default_ledger)
 
 
 if __name__ == "__main__":
