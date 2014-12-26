@@ -38,7 +38,6 @@ class Ledger():
 		copyfile(self.file, self.file+"~")
 		fd = open(self.file, "w")
 		fd.write(self.file_contents[0])
-		fd.write(self.file_contents[1])
 		print self.entries
 		for entry in self.entries:
 			fd.write(' '.join(entry)+"\n")
