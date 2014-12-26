@@ -7,6 +7,7 @@ class Ledger():
 		self.title = self.file_contents[0]
 		self.entries_by_payer = dict()
 		self.entries = list()
+		self.people = list()
 		for entry in self.file_contents[1:]:
 			entry = entry.split()
 			try:
@@ -17,6 +18,8 @@ class Ledger():
 			entry[2] = "%.02f" % float(entry[2])
 			payer = entry[3].upper()
 
+			if payer not in self.people:
+				self.people.append(payer)
 			if payer not in self.entries_by_payer:
 				self.entries_by_payer[payer] = list()
 			self.entries_by_payer[payer].append(entry)
