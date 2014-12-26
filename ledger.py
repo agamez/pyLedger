@@ -48,7 +48,7 @@ class Ledger():
 		return True
 
 
-	def __init__(self, file="~/.pyLedger/default.ldgr"):
+	def __init__(self, file="~/.default.ldgr"):
 		self.file=os.path.expanduser(file)
 		self.load()
 
