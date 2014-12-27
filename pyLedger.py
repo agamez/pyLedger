@@ -58,11 +58,11 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 	def on_newEntryButton_clicked(self, b):
 		self.entriesTable.blockSignals(True)
 
-		row=self.entriesTable.rowCount()
-		self.entriesTable.setRowCount(row+1)
-
 		next_payer = self.ledger.people[0] if self.ledger.people else ""
 		entry = (QDate.currentDate().toString("yy/MM/dd"), QTime.currentTime().toString(), "0.00", next_payer, "")
+
+		row=self.entriesTable.rowCount()
+		self.entriesTable.setRowCount(row+1)
 
 		self.setEntry(entry, row)
 
