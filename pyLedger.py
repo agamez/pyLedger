@@ -130,7 +130,10 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 			return
 		default_ledger = os.path.expanduser('~/.default.ldgr')
 		if not os.path.exists(default_ledger) or os.path.islink(default_ledger):
-			os.remove(default_ledger)
+			try:
+				os.remove(default_ledger)
+			except:
+				pass
 			os.symlink(self.ledger.file, default_ledger)
 
 
