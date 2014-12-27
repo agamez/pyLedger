@@ -48,8 +48,14 @@ class Ledger():
 		return True
 
 
-	def __init__(self, file="~/.default.ldgr"):
+	def __init__(self, file="~/.default.ldgr", title=None):
 		self.file=os.path.expanduser(file)
+		if title:
+			if not self.file.endswith('.ldgr'):
+				self.file=self.file+'.ldgr'
+			fd = open(self.file, "w")
+			fd.write(title+'\n')
+			fd.close()
 		self.load()
 
 	def load(self):

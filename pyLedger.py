@@ -104,6 +104,15 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 			self.ledger = Ledger(str(new_ledger))
 			self.reload()
 
+	def on_actionNew_triggered(self, b):
+		new_ledger = QFileDialog.getSaveFileName(self, 'New ledger', '/', 'Ledger files (*.ldgr)')
+		if new_ledger:
+			title, ok = QInputDialog.getText(self, 'Ledger title', 'Ledger title')
+			if ok:
+				self.ledger = Ledger(str(new_ledger), str(title))
+				self.reload()
+
+
 	def on_actionSetDefault_triggered(self, b):
 		default_ledger = os.path.expanduser('~/.default.ldgr')
 		if not os.path.exists(default_ledger) or os.path.islink(default_ledger):
