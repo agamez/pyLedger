@@ -13,7 +13,8 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 		super(PyLedger, self).__init__()
 		self.ledger=ledger
 		self.setupUi(self)
-		self.reload()
+		if ledger:
+			self.reload()
 
 	def reload(self):
 		self.ledger.load()
@@ -50,12 +51,18 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 			self.statusBar().showMessage("Empty ledger")
 
 	def on_removeEntryButton_clicked(self, b):
+		if not self.ledger:
+			QMessageBox.warning(self, "Error", "You must open an existing ledger or create a new one")
+			return
 		row=self.entriesTable.currentRow()
 		self.ledger.entries.pop(row)
 		self.ledger.save()
 		self.reload()
 
 	def on_newEntryButton_clicked(self, b):
+		if not self.ledger:
+			QMessageBox.warning(self, "Error", "You must open an existing ledger or create a new one")
+			return
 		self.entriesTable.blockSignals(True)
 
 		next_payer = self.ledger.people[0] if self.ledger.people else ""
@@ -89,6 +96,9 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 
 
 	def on_showSummaryButton_clicked(self, b):
+		if not self.ledger:
+			QMessageBox.warning(self, "Error", "You must open an existing ledger or create a new one")
+			return
 		totals = self.ledger.calculate_totals()
 
 		msg = "Ledger statistics\n\n"
@@ -100,7 +110,8 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 	def on_actionOpen_triggered(self, b):
 		new_ledger = QFileDialog.getOpenFileName(self, 'Open ledger', '/', 'Ledger files (*.ldgr)')
 		if new_ledger:
-			self.ledger.save()
+			if self.ledger:
+				self.ledger.save()
 			self.ledger = Ledger(str(new_ledger))
 			self.reload()
 
@@ -114,6 +125,9 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 
 
 	def on_actionSetDefault_triggered(self, b):
+		if not self.ledger:
+			QMessageBox.warning(self, "Error", "You must open an existing ledger or create a new one")
+			return
 		default_ledger = os.path.expanduser('~/.default.ldgr')
 		if not os.path.exists(default_ledger) or os.path.islink(default_ledger):
 			os.remove(default_ledger)
@@ -122,7 +136,10 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 
 if __name__ == "__main__":
 	app = QApplication(sys.argv)
-	ledger = Ledger()
-	form = PyLedger(ledger)
+	try:
+		ledger = Ledger()
+		form = PyLedger(ledger)
+	except:
+		form = PyLedger(None)
 	form.show()
 	app.exec_()
