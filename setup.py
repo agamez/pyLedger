@@ -16,9 +16,10 @@ setup(
 	author='Alvaro Gamez Machado',
 	author_email='alvaro.gamez@hazent.com',
 	url='https://github.com/agamez/pyLedger',
-	scripts=['ledger.py', 'pyLedger.py', 'pyLedger_ui.py'],
+	scripts=['pyLedger'],
 	cmdclass = {"build" : build_ui},
-	data_files = [('/opt/usr/share/icons/hicolor/64x64/apps', ['ledger.png']),
-		      ('/usr/share/applications/hildon', ['pyLedger.desktop'])
+	data_files = [('share/icons/hicolor/64x64/apps', ['ledger.png']),
+		      ('share/applications/hildon', ['pyLedger.desktop']),
+		      ('/opt/pyLedger', ['ledger.py', 'pyLedger.py', 'pyLedger_ui.py']),
 	]
 )

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+PROGRAM=/opt/pyLedger/pyLedger.py
+PYTHON=`which python2.5`
+
+$PYTHON $PROGRAM
