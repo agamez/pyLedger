@@ -27,6 +27,7 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 
 	def fill_table(self):
 		row=0
+		self.entriesTable.setRowCount(row)
 		for entry in self.ledger.entries:
 			self.entriesTable.setRowCount(row+1)
 			self.setEntry(entry, row)
