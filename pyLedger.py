@@ -87,7 +87,6 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 			entry.append(self.entriesTable.item(item.row(), x).text())
 
 		if self.ledger.verify_entry(entry):
-			print "Saving"
 			try:
 				self.ledger.entries[item.row()] = map(str, entry)
 			except:

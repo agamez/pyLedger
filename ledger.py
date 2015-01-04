@@ -38,11 +38,9 @@ class Ledger():
 		copyfile(self.file, self.file+"~")
 		fd = open(self.file, "w")
 		fd.write(self.file_contents[0])
-		print self.entries
 		for entry in self.entries:
 			fd.write(' '.join(entry)+"\n")
 		fd.close()
-		print "Saved"
 
 	def verify_entry(self, entry):
 		return True
