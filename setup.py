@@ -11,7 +11,7 @@ class build_ui(build):
 
 setup(
 	name='pyLedger',
-	version='1.0',
+	version='1.1',
 	license = "GNU General Public License, Version 2",
 	author='Alvaro Gamez Machado',
 	author_email='alvaro.gamez@hazent.com',
