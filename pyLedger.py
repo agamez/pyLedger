@@ -105,7 +105,7 @@ class PyLedger(QMainWindow, pyLedger_ui.Ui_MainWindow):
 		msg = "Ledger statistics\n\n"
 		msg = "Total payed: %.02f\n\n" % totals[0]
 		for payer in totals[1:]:
-			msg += "%s payed\t%.02f\t%s\t%.02f\n" % (payer[0], payer[1], "owes" if payer[2] > 0 else "is owned", payer[2])
+			msg += "%s payed\t%.02f\t%s\t%.02f\n" % (payer[0], payer[1], "owes" if payer[2] > 0 else "is owed", payer[2])
 		QMessageBox.about(self, "Ledger summary", msg)
 
 	def on_actionOpen_triggered(self, b):
